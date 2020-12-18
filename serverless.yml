@@ -1,0 +1,26 @@
+service: gsx2json
+# app and org for use with dashboard.serverless.com
+app: gsx2json
+org: prosingularity
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline # must come after typescript
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+# frameworkVersion: "=X.X.X"
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  region: eu-central-1
+  stage: prod
+
+functions:
+  gsx2json:
+    handler: src/index.handler
+    events:
+      - http:
+          path: "/"
+          method: get
